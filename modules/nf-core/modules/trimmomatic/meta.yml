@@ -1,0 +1,39 @@
+name: trimmomatic
+description: Trim FastQ files using Trimmomatic
+keywords:
+    - trimming
+    - adapters
+    - sequencing adapters
+    - fastq
+tools:
+    - trimmomatic:
+        description: |
+            use trimmomatic to consistently apply quality
+            and adapter trimming to FastQ files
+        homepage: http://www.usadellab.org/cms/index.php?page=trimmomatic 
+        documentation: https://github.com/usadellab/Trimmomatic 
+input:
+    - meta:
+        type: map
+        description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+    - reads:
+        type: file
+        description: |
+            List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+            respectively.
+output:
+    - meta:
+        type: map
+        description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+    - reads:
+        type: file
+        description: |
+            List of input adapter trimmed FastQ files of size 1 and 2 for
+            single-end and paired-end data, respectively.
+        pattern: "*.{fq.gz}"
+authors:
+    - "@abotzki

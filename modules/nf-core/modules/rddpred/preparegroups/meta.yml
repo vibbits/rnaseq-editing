@@ -1,0 +1,33 @@
+name: rddpred_preparegroups 
+description:  
+keywords:
+    - machine learning 
+    - RNA-editing 
+tools:
+    - rddpred:
+        description: |
+            rddpred 
+        homepage: http://epigenomics.snu.ac.kr/RDDpred/ 
+        documentation: http://epigenomics.snu.ac.kr/RDDpred/manual.php 
+input:
+    - meta:
+        type: map
+        description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+    - reads:
+        type: file
+        description: |
+            List of input files with conditions flags 
+output:
+    - meta:
+        type: map
+        description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+  - rddpred_conditions:
+        type: file
+        description: file(s) with bam locations 
+        pattern: "*.tab"
+authors:
+    - "@abotzki
