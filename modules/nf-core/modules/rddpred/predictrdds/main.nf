@@ -10,14 +10,15 @@ process RDDPRED_PREDICTRDDS {
         mode: params.publish_dir_mode
 
     // Note: 2.7X indices incompatible with AWS iGenomes.
-    conda (params.enable_conda ? 'bioconda::star=2.6.1d' : null)
+    // for RDDpred, there is no conda package
+    //conda (params.enable_conda ? 'bioconda::rddpred=1.1.4' : null)
     if (params.enable_aks) {
        pod nodeSelector: 'agentpool=cpumem'
     }
 
 
     if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
-        container 'rddpred-github:1.1.3'
+        container 'rddpred-github:1.1.4'
     } else {
         container 'docker.io/vibbioinfocore/rddpred:1.1.4'
     }
@@ -62,7 +63,7 @@ process RDDPRED_PREDICTRDDS {
         -nsl $negative \\
         $options.args
 
-    echo '1.1.3' > ${software}.version.txt
+    echo '1.1.4' > ${software}.version.txt
     rm $groupfile
     """
 }
