@@ -40,7 +40,7 @@ The initial nf-core pipeline is built using [Nextflow](https://www.nextflow.io),
 
     > * Please check [nf-core/configs](https://github.com/nf-core/configs#documentation) to see if a custom config file to run nf-core pipelines already exists for your Institute. If so, you can simply use `-profile <institute>` in your command. This will enable either `docker` or `singularity` and set the appropriate execution settings for your local compute environment.
 
-4. Start running your own analysis!
+4. Start running your own analysis using Docker locally!
 
     ```console
     nextflow run vibbits/rnaseq-editing \
@@ -55,6 +55,10 @@ The initial nf-core pipeline is built using [Nextflow](https://www.nextflow.io),
         wget -L https://raw.githubusercontent.com/nf-core/rnaseq/master/bin/fastq_dir_to_samplesheet.py
         ./fastq_dir_to_samplesheet.py <FASTQ_DIR> samplesheet.csv --strandedness reverse
         ```
+
+    * The final analysis has been executed on the Azure platform using Azure Kubernetes Services (AKS). AKS has to be set up on the Azure platform by defining a standard node pool called sys next to the scalable node pool cpumem using Standard_E8ds_v4 as node size for calculation.
+      Furthermore, persistent volume claims (PVCs) have been setup for input and work folders of the nextflow runs. In the PVC `input` the reference data as well as the fastqc files have been stored where the PVC `work`, the temporary nextflow files for the individual runs as well as the output files have been stored.
+    * The config file for the final execution run for [RNAseq editing for the human samples and reference genome hg19](https://github.com/vibbits/rnaseq-editing/blob/master/nextflow.config.as-executed).    
 
 ## Documentation
 
