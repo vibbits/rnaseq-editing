@@ -27,14 +27,19 @@ The initial nf-core pipeline is built using [Nextflow](https://www.nextflow.io),
 2. Install [`Docker`](https://docs.docker.com/engine/installation/) on a Linux operating system.
    Note: This pipeline does not currently support running with macOS.
 
-3. Download the pipeline and test it on a minimal dataset with a single command:
+3. Download the pipeline via git clone, download the associated training data files for RDDpred into the assets folder, download the reference data to 
 
     ```console
-    nextflow run nf-core/rnaseq-editing -profile test,docker
+    git clone https://github.com/vibbits/rnaseq-editing.git
+    cd $(pwd)/rnaseq-editing/assets
+    # download training data file for RDDpred
+    wget -c 
+    # download reference data for your genome, we provide genome and indexed genome for STAR 2.7.3a
+    
     ```
 
     > * Please check [nf-core/configs](https://github.com/nf-core/configs#documentation) to see if a custom config file to run nf-core pipelines already exists for your Institute. If so, you can simply use `-profile <institute>` in your command. This will enable either `docker` or `singularity` and set the appropriate execution settings for your local compute environment.
-    
+
 4. Start running your own analysis!
 
     ```console
